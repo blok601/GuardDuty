@@ -1,0 +1,8 @@
+bin
+.idea
+.settings
+.classpath
+.project
+dependency-reduced-pom.xml
+nightshadeuhc.iml
+target
