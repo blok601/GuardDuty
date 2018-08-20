@@ -1,0 +1,8 @@
+allowedcommands:
+  - "r"
+  - "msg"
+jail:
+  x: 0
+  y: 60
+  z: 0
+  world: "world"

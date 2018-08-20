@@ -1,0 +1,19 @@
+name: GuardDuty
+version: ${project.version}
+main: me.blok.guard.Guard
+depend: [PlaceholderAPI]
+depend:
+description: Guard Duty plugin for Mr Lonely
+commands:
+  jail:
+    description: Put a player in jail
+  setjail:
+    description: Set the jail location
+  offduty:
+    description: Go off duty
+  onduty:
+    description: Go on duty
+  unjail:
+    description: Unjail a player
+  duty:
+    description: View Guard commands
