@@ -38,12 +38,12 @@ public class OffDutyCommand implements CommandExecutor{
         }
 
         if(args.length != 0){
-            p.sendMessage(ChatUtils.message("&cUsage: /offduty"));
+            p.sendMessage(ChatUtils.message("&cUsage: /offduty", p));
             return false;
         }
 
         if(!Guard.getInstance().getOnDuty().containsKey(p.getUniqueId())){
-            p.sendMessage(ChatUtils.message(Messages.ALREADY_ON_DUTY));
+            p.sendMessage(ChatUtils.message(Messages.ALREADY_OFF_DUTY, p));
             return false;
         }
 
@@ -54,7 +54,7 @@ public class OffDutyCommand implements CommandExecutor{
         p.getInventory().setArmorContents(inv.getArmorContents());
         Guard.getInstance().getOnDuty().remove(p.getUniqueId());
 
-        p.sendMessage(ChatUtils.message(Messages.NOW_OFF_DUTY));
+        p.sendMessage(ChatUtils.message(Messages.NOW_OFF_DUTY, p));
         Bukkit.broadcastMessage(ChatUtils.translate(Messages.BROADCAST_OFF_DUTY, p));
 
         return false;

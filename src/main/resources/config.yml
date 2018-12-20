@@ -6,3 +6,22 @@ jail:
   y: 60
   z: 0
   world: "world"
+guardItemContains: "&a&lGuard"
+broadcastonduty: '&a%player% &bhas gone ON Duty!'
+broadcastoffduty: '&a%player% &bhas gone OFF Duty!'
+prefix: '&0&l[&cGuard&0&l]&r'
+already-on-duty: '&cYou are already OnDuty!'
+already-off-duty: '&cYou are already OffDuty!'
+on-duty-tag: '&8[&aOnDuty&8]'
+off-duty-tag: '&8[&aOffDuty&8]'
+now-on-duty: '&eYou are now on duty!'
+now-off-duty: '&eYou are now off duty!'
+saved-jail: '&eYou have set the location for the jail!'
+sent-to-jail: '&eYou have been sent to jail by %player%'
+jail-not-set: '&cThe jail hasn''t been set yet!'
+sent-player-to-jail: '&eYou have sent %player% to jail!'
+not-allowed-command: '&eYou can''t do that command while in jail!'
+bypassed-player: '&cYou can''t jail that player!'
+jail-time-finished: '&eYour jail time is finished!'
+unjailed-player: '&eYou have unjailed %player%!'
+already-in-jail: '&cThat player is already in jail!'

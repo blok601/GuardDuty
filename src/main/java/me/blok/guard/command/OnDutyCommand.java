@@ -30,12 +30,12 @@ public class OnDutyCommand implements CommandExecutor{
         }
 
         if(args.length != 0){
-            p.sendMessage(ChatUtils.message("&cUsage: /onduty"));
+            p.sendMessage(ChatUtils.message("&cUsage: /onduty", p));
             return false;
         }
 
         if(Guard.getInstance().getOnDuty().containsKey(p.getUniqueId())){
-            p.sendMessage(ChatUtils.message(Messages.ALREADY_ON_DUTY));
+            p.sendMessage(ChatUtils.message(Messages.ALREADY_ON_DUTY, p));
             return false;
         }
 
@@ -46,9 +46,10 @@ public class OnDutyCommand implements CommandExecutor{
 
         p.getInventory().clear();
         p.getInventory().setArmorContents(null);
-        p.chat("/kit guard");
+        p.performCommand("essentials:kit guard");
 
-        p.sendMessage(ChatUtils.message(ChatUtils.translate(Messages.NOW_ON_DUTY, p)));
+        String msg = ChatUtils.translate(Messages.NOW_ON_DUTY, p);
+        p.sendMessage(ChatUtils.message(msg, p));
         Bukkit.broadcastMessage(ChatUtils.format(ChatUtils.translate(Messages.BROADCAST_ON_DUTY, p)));
         return false;
     }

@@ -1,6 +1,7 @@
 package me.blok.guard.utils;
 
-import me.blok.guard.Files;
+import me.blok.guard.Guard;
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -10,9 +11,9 @@ import org.bukkit.entity.Player;
  */
 public class ChatUtils {
 
-    public static String message(String string){
-        String prefix = Files.getInstance().getMessages().getString("prefix");
-        return ChatColor.translateAlternateColorCodes('&', prefix + " " + string);
+    public static String message(String string, Player player){
+        String prefix = Guard.getInstance().getConfig().getString("prefix");
+        return format(prefix + PlaceholderAPI.setPlaceholders(player, string));
     }
 
     public static String format(String string){
@@ -20,7 +21,11 @@ public class ChatUtils {
     }
 
     public static String translate(String string, Player player){
-        string = string.replaceAll("%player%", player.getName());
+
+        if(string.contains("%player")){
+            string = string.replaceAll("%player%", player.getName());
+        }
+
         return ChatUtils.format(string);
     }
 

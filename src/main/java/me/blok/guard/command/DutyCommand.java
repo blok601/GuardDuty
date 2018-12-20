@@ -1,5 +1,7 @@
 package me.blok.guard.command;
 
+import me.blok.guard.Guard;
+import me.blok.guard.data.Messages;
 import me.blok.guard.utils.ChatUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -26,19 +28,45 @@ public class DutyCommand implements CommandExecutor{
             return false;
         }
 
-
         Player p = (Player) sender;
+
+        if (args.length == 1) {
+            if (args[0].equalsIgnoreCase("reload")) {
+                if (!p.hasPermission("guardduty.reload")) {
+                    p.sendMessage(ChatUtils.message("&cNo permission!", p));
+                    return false;
+                }
+
+                p.sendMessage(ChatUtils.message("&eReloading all messages and data...", p));
+                Guard.getInstance().reloadConfig();
+                Guard.getInstance().savePlayers();
+                Guard.getInstance().getOnDuty().clear();
+                Guard.getInstance().loadPlayers();
+                p.sendMessage(ChatUtils.message("&eLoaded all player data!", p));
+                Messages.reload();
+                p.sendMessage(ChatUtils.message("&eLoaded all messages!", p));
+                p.sendMessage(ChatUtils.message("&eReload complete!", p));
+                return true;
+            }
+            if (!p.hasPermission("guard.help")) {
+                p.sendMessage(ChatUtils.format("&cNo permission!"));
+                return false;
+            }
+            p.sendMessage(ChatUtils.message("&eGuard Duty Help:", p));
+            p.sendMessage(ChatUtils.format("&e/onduty - Toggles guard duty on"));
+            p.sendMessage(ChatUtils.format("&e/offduty - Toggles guard duty off"));
+            p.sendMessage(ChatUtils.format("&e/duty reload - Reloads all messages and player data"));
+        }
+
+
         if(!p.hasPermission("guard.help")){
             p.sendMessage(ChatUtils.format("&cNo permission!"));
             return false;
         }
-        p.sendMessage(ChatUtils.message("&eGuard Duty Help:"));
+        p.sendMessage(ChatUtils.message("&eGuard Duty Help:", p));
         p.sendMessage(ChatUtils.format("&e/onduty - Toggles guard duty on"));
         p.sendMessage(ChatUtils.format("&e/offduty - Toggles guard duty off"));
-        p.sendMessage(ChatUtils.format("&e/jail <player> - Jails a player"));
-        p.sendMessage(ChatUtils.format("&e/unjail <player> - Unjails a player"));
-        p.sendMessage(ChatUtils.format("&e/setjail - Set the jail"));
-
+        p.sendMessage(ChatUtils.format("&e/duty reload - Reloads all messages and player data"));
 
         return false;
     }

@@ -58,7 +58,6 @@ public class Files {
         Guard.getInstance().getConfig().options().copyDefaults(true);
         Guard.getInstance().saveConfig();
         savePlayers();
-        saveMessages();
         Bukkit.getLogger().info("[Guard] Successfully loaded config.yml!");
     }
 
@@ -66,26 +65,11 @@ public class Files {
         return instance;
     }
 
-    public FileConfiguration getMessages() {
-        return messages;
-    }
 
     public FileConfiguration getPlayers() {
         return players;
     }
 
-    public void saveMessages(){ //Won't be used!
-        try{
-            messages.save(mFile);
-        } catch (IOException e) {
-            Bukkit.getLogger().severe("[Guard] There was a problem saving the messages.yml file! Please report the following:");
-            e.printStackTrace();
-        }
-    }
-
-    public void reloadMessages(){
-        messages = YamlConfiguration.loadConfiguration(mFile);
-    }
 
     public void savePlayers(){
         try{
